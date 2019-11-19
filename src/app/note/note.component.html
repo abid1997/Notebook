@@ -1,0 +1,17 @@
+<mat-expansion-panel #mep="matExpansionPanel" class="mb-1">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ note.title }}
+    </mat-panel-title>
+    <mat-panel-description>
+      Some Content
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p>{{ note.content }}</p>
+  <mat-action-row>
+    <a [routerLink]="['/editNote',note._id]" (click)="editMode = !editMode" class="btn btn-primary mr-1">Edit</a>
+    <button class="btn btn-danger mr-1" (click)="onDelete(note._id)">Delete</button>
+    <button class="btn btn-dark" (click)="mep.expanded = false;editMode = false">Close</button>
+  </mat-action-row>
+</mat-expansion-panel>
+<router-outlet *ngIf="editMode"></router-outlet>

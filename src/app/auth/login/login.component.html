@@ -1,0 +1,43 @@
+<header id="home-section">
+  <div class="dark-overlay">
+    <div class="home-inner container">
+      <div class="row">
+        <div class="col-md-4 offset-md-4">
+          <div class="card bg-info text-center card-form">
+            <div class="card-body">
+              <img
+                id="user-img"
+                src="../../../assets/images/face.png"
+                class="img-fluid rounded-circle w-50 mb-3"
+              />
+              <h3>Login</h3>
+              <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                <div class="form-group">
+                  <input
+                    ngModel
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Your Email"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    ngModel
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Your Password"
+                  />
+                </div>
+                <button type="submit" class="btn btn-outline-light btn-block">
+                  Login
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

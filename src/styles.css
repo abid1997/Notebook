@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.success{
+    background: rgb(62, 236, 56);
+    font-weight: bolder;
+}
+.error{
+    background: rgb(236, 34, 34);
+    font-weight: bolder;
+}
