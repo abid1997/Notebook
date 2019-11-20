@@ -6,6 +6,8 @@ import { UIService } from './shared/ui.service';
 
 @Injectable({ providedIn: "root" })
 export class NotesService implements OnInit {
+  selectedNote: Note;
+  editting: boolean;
   loadingStateChanged = new Subject<boolean>();
   editModeSubject = new Subject<boolean>();
   notesChanged = new Subject<Note[]>();

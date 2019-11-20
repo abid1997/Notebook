@@ -1,14 +1,15 @@
-<div *ngIf="show">
+<div>
     <div class="card">
         <div class="card-body">
             <form #f="ngForm" (ngSubmit)="onSubmit(f)">
                 <div class="form-group">
                     <label>Title</label>
-                    <input name="title" type="text" class="form-control" ngModel>
+                    <input name="title" type="text" class="form-control" [(ngModel)]="notesService.selectedNote.title">
                 </div>
                 <div class="form-group">
                     <label>Content</label>
-                    <textarea name="content" class="form-control" rows="6" ngModel></textarea>
+                    <textarea name="content" class="form-control" rows="6"
+                        [(ngModel)]="notesService.selectedNote.content"></textarea>
                 </div>
                 <div class="text-center">
                     <button class="btn btn-info" type="submit">Update</button>

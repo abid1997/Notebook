@@ -11,51 +11,18 @@ import { NgForm } from '@angular/forms';
   templateUrl: "./edit-note.component.html",
   styleUrls: ["./edit-note.component.css"]
 })
-export class EditNoteComponent implements OnInit, OnDestroy, AfterViewInit {
-  show = false;
-  noteId: any;
-  selectedNote: Note;
-  subs: Subscription;
+export class EditNoteComponent implements OnInit, OnDestroy {
   @ViewChild('f', { static: false }) editForm: NgForm;
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private notesService: NotesService) {
-    this.notesService.editModeSubject.next(true);
-  }
+  constructor(private notesService: NotesService) { }
 
-  ngOnInit() {
-    this.subs = this.activatedRoute.params.subscribe((p: Params) => {
-      this.noteId = p.noteId;
-      this.http.get('http://localhost:8080/feed/note/' + this.noteId)
-        .subscribe(
-          (result: { message: string, note: Note }) => {
-            console.log(result);
-            this.selectedNote = result.note;
-          }, err => {
-            console.log(err);
-          })
-
-    });
-  }
-
-  ngAfterViewInit() {
-    this.show = true;
-    setTimeout(() => {
-      this.editForm.setValue({
-        title: this.selectedNote.title,
-        content: this.selectedNote.content
-      })
-    }, 800)
-  }
+  ngOnInit() { }
 
   onSubmit(f: NgForm) {
     console.log(f.value);
-    this.notesService.updateNote(this.noteId, f.value.title, f.value.content);
-    setTimeout(() => {
-      this.show = false;
-    }, 1000);
+    this.notesService.updateNote(this.notesService.selectedNote._id, f.value.title, f.value.content);
+    this.notesService.editting = false;
   }
 
   ngOnDestroy() {
-    this.notesService.editModeSubject.next(false);
-    this.subs.unsubscribe();
   }
 }
