@@ -3,26 +3,16 @@
   <form>
     <div class="form-group">
       <label>Title</label>
-      <input
-        type="text"
-        class="form-control"
-        name="title"
-        [(ngModel)]="note.title"
-      />
+      <input type="text" class="form-control" name="title" [(ngModel)]="note.title" />
     </div>
     <div class="form-group">
       <label>Content</label>
-      <textarea
-        class="form-control"
-        name="content"
-        rows="6"
-        [(ngModel)]="note.content"
-      ></textarea>
+      <textarea class="form-control" name="content" rows="6" [(ngModel)]="note.content"></textarea>
     </div>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button class="btn btn-success" mat-dialog-close [mat-dialog-close]="note">
+  <button class="btn btn-success mr-1" mat-dialog-close [mat-dialog-close]="note">
     Add
   </button>
   <button class="btn btn-dark" mat-dialog-close [mat-dialog-close]="">

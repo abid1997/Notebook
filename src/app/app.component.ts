@@ -23,7 +23,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(NewNoteComponent);
+    let dialogRef = this.dialog.open(NewNoteComponent, {
+      height: '480px',
+      width: '600px'
+    });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       console.log(result);
