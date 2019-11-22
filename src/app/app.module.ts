@@ -12,8 +12,12 @@ import { MaterialModule } from "./material.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { NewNoteComponent } from "./new-note/new-note.component";
 import { EditNoteComponent } from "./note/edit-note/edit-note.component";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { HeaderComponent } from './header/header.component';
+import { NotesMainComponent } from './notes-main/notes-main.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { LoaderComponent } from './shared/loader/loader.component';
     NotesListComponent,
     NewNoteComponent,
     EditNoteComponent,
-    LoaderComponent
+    LoaderComponent,
+    HeaderComponent,
+    NotesMainComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
   entryComponents: [NewNoteComponent]
 })

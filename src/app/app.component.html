@@ -1,15 +1,4 @@
-<div class="bg-dark text-light text-center py-3">
-  <h2 class="display-4">Notebook</h2>
-  <p class="lead">Add your important notes and manage them efficiently.</p>
-</div>
-<div class="container">
-  <div class="mt-5">
-    <button class="btn btn-success mb-2" (click)="openDialog()">
-      Add New Note
-    </button>
-    <div *ngIf="isLoading" class="text-center">
-      <app-loader></app-loader>
-    </div>
-    <app-notes-list></app-notes-list>
-  </div>
-</div>
+<app-header></app-header>
+<main>
+  <router-outlet></router-outlet>
+</main>

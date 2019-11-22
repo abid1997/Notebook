@@ -1,0 +1,11 @@
+.badge{
+    margin-left: auto;
+}
+
+
+@media(max-width: 599px){
+    .badge{
+        margin-left: auto;
+        font-size: 8px;
+    }
+}

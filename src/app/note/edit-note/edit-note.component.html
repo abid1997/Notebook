@@ -1,20 +1,26 @@
-<div>
-    <div class="card">
-        <div class="card-body">
-            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-                <div class="form-group">
-                    <label>Title</label>
-                    <input name="title" type="text" class="form-control" [(ngModel)]="notesService.selectedNote.title">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input name="title" type="text" class="form-control"
+                                [(ngModel)]="notesService.selectedNote.title">
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea name="content" class="form-control" rows="6"
+                                [(ngModel)]="notesService.selectedNote.content"></textarea>
+                        </div>
+                        <div>
+                            <button class="btn btn-info mr-1" type="submit">Update</button>
+                            <button class="btn btn-secondary" type="button" (click)="onClose()">Close</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label>Content</label>
-                    <textarea name="content" class="form-control" rows="6"
-                        [(ngModel)]="notesService.selectedNote.content"></textarea>
-                </div>
-                <div class="text-center">
-                    <button class="btn btn-info" type="submit">Update</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

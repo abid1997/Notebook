@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 export class NotesListComponent implements OnInit, OnDestroy {
   notesSubs: Subscription;
   notes = [];
+  isLoading: boolean;
 
   constructor(private notesService: NotesService) { }
 

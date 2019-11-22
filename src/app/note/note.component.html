@@ -4,7 +4,7 @@
       {{ note.title }}
     </mat-panel-title>
     <mat-panel-description>
-      Some Content
+      <p class="d-none d-md-block badge badge-info">Created on: {{ note.createdAt | date }}</p>
     </mat-panel-description>
   </mat-expansion-panel-header>
   <p>{{ note.content }}</p>

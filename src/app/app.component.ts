@@ -3,40 +3,18 @@ import { MatDialog } from "@angular/material";
 import { NewNoteComponent } from "./new-note/new-note.component";
 import { NotesService } from "./notes.service";
 import { Subscription } from 'rxjs';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent implements OnInit, OnDestroy {
-  isLoading: boolean;
-  editMode = false;
-  editSubs: Subscription;
-  loadingSubs: Subscription;
-  constructor(public dialog: MatDialog, public notesService: NotesService) { }
+export class AppComponent implements OnInit {
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.notesService.getNotes();
-    this.loadingSubs = this.notesService.loadingStateChanged
-      .subscribe(ls => this.isLoading = ls);
+    this.authService.autoAuthUser();
   }
 
-  openDialog() {
-    let dialogRef = this.dialog.open(NewNoteComponent, {
-      height: '480px',
-      width: '600px'
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(result);
-      if (result) {
-        this.notesService.addNote(result);
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.loadingSubs.unsubscribe();
-  }
 }

@@ -1,9 +1,2 @@
-<div class="row">
-  <div class="col-md-7">
-    <app-note *ngFor="let n of notes" [note]="n"></app-note>
-  </div>
-  <div class="col-md-5">
-    <h2 class="text-center" *ngIf="!notesService.editting">Edit form will load here..</h2>
-    <router-outlet *ngIf="notesService.editting"></router-outlet>
-  </div>
-</div>
+<!-- <h2 *ngIf="notes.length == 0">No note added yet!</h2> -->
+<app-note *ngFor="let n of notes" [note]="n"></app-note>

@@ -3,6 +3,7 @@ import { Subject } from "rxjs";
 import { Note } from "./model/note.model";
 import { HttpClient } from '@angular/common/http';
 import { UIService } from './shared/ui.service';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: "root" })
 export class NotesService implements OnInit {
@@ -13,7 +14,7 @@ export class NotesService implements OnInit {
   notesChanged = new Subject<Note[]>();
   private notes: Note[] = [];
 
-  constructor(private http: HttpClient, private uiService: UIService) { }
+  constructor(private http: HttpClient, private uiService: UIService, private router: Router) { }
 
   ngOnInit() { }
 
@@ -49,7 +50,7 @@ export class NotesService implements OnInit {
       content: note.content
     })
       .subscribe(
-        (result: { message: string; result: {}; notes: Note[] }) => {
+        (result: { message: string; result: any; notes: Note[] }) => {
           this.loadingStateChanged.next(false);
           console.log(result);
           this.notes = result.notes;
@@ -78,6 +79,7 @@ export class NotesService implements OnInit {
           console.log(res);
           this.notes = res.notes;
           this.notesChanged.next([...this.notes]);
+          this.router.navigate(['/myNotes']);
           this.uiService.showSnackBar(res.message, null, 'success', 5000);
         },
         err => {
