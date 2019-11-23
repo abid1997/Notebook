@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { UIService } from './shared/ui.service';
 import { Router } from '@angular/router';
 
+const BACKEND_URL = 'https://notebook-rest-api.herokuapp.com/api/feed/';
+
 @Injectable({ providedIn: "root" })
 export class NotesService implements OnInit {
   selectedNote: Note;
@@ -20,7 +22,7 @@ export class NotesService implements OnInit {
 
   getNotes() {
     this.loadingStateChanged.next(true);
-    this.http.get('http://localhost:8080/feed/notes')
+    this.http.get(BACKEND_URL + '/notes')
       .subscribe((postData: any) => {
         this.loadingStateChanged.next(false);
         this.notes = postData.notes;
@@ -33,7 +35,7 @@ export class NotesService implements OnInit {
   }
 
   // getNoteById(noteId: any) {
-  //   this.http.get('http://localhost:8080/feed/note/' + noteId)
+  //   this.http.get('feed/note/' + noteId)
   //     .subscribe((result: { message: string, note: Note }) => {
   //       console.log(result);
   //       this.selectedNote = result.note;
@@ -45,7 +47,7 @@ export class NotesService implements OnInit {
 
   addNote(note: Note) {
     this.loadingStateChanged.next(true);
-    this.http.post('http://localhost:8080/feed/note', {
+    this.http.post(BACKEND_URL + '/note', {
       title: note.title,
       content: note.content
     })
@@ -67,7 +69,7 @@ export class NotesService implements OnInit {
 
   updateNote(noteId: any, title: string, content: string) {
     this.loadingStateChanged.next(true);
-    this.http.put('http://localhost:8080/feed/note/' + noteId,
+    this.http.put(BACKEND_URL + '/note/' + noteId,
       {
         title: title,
         content: content
@@ -92,7 +94,7 @@ export class NotesService implements OnInit {
 
   deleteNote(noteId: any) {
     this.loadingStateChanged.next(true);
-    this.http.delete('http://localhost:8080/feed/note/' + noteId)
+    this.http.delete(BACKEND_URL + '/note/' + noteId)
       .subscribe((result: { message: string; notes: Note[] }) => {
         this.loadingStateChanged.next(false);
         console.log(result);

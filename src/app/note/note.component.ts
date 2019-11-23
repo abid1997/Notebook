@@ -15,7 +15,7 @@ import { AuthService } from '../auth/auth.service';
 export class NoteComponent implements OnInit, OnDestroy {
   //isAuth: boolean;
   //authSubs: Subscription
-  @Input() note: { _id: any; title: string; content: string };
+  @Input() note: { _id: any; title: string; content: string; createdAt: any };
   editSubs: Subscription;
   constructor(public router: Router, public notesService: NotesService, public authService: AuthService) { }
 

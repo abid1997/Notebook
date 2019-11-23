@@ -12,22 +12,26 @@ import { NgForm } from '@angular/forms';
   styleUrls: ["./edit-note.component.css"]
 })
 export class EditNoteComponent implements OnInit, OnDestroy {
+  isLoading: boolean;
+  loadingSubs: Subscription;
   @ViewChild('f', { static: false }) editForm: NgForm;
-  constructor(private notesService: NotesService, private router: Router) { }
+  constructor(public notesService: NotesService, private router: Router) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.loadingSubs = this.notesService.loadingStateChanged.subscribe(ls => this.isLoading = ls);
+  }
 
   onSubmit(f: NgForm) {
     console.log(f.value);
     this.notesService.updateNote(this.notesService.selectedNote._id, f.value.title, f.value.content);
     this.notesService.editting = false;
-    this.router.navigate(['/']);
   }
 
   onClose() {
-    this.notesService.editting = false;
+    this.router.navigate(['/myNotes']);
   }
 
   ngOnDestroy() {
+    this.loadingSubs.unsubscribe();
   }
 }

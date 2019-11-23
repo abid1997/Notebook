@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { UIService } from '../shared/ui.service';
+import { environment } from 'src/environments/environment';
+
+const BACKEND_URL = 'https://notebook-rest-api.herokuapp.com/api/user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -35,7 +38,7 @@ export class AuthService {
     signup(fullName, email, password) {
         this.loadingStateChanged.next(true);
         const user: User = { fullName: fullName, email: email, password: password };
-        this.http.post<{ message: string, res: any }>('http://localhost:8080/user/signup', user)
+        this.http.post<{ message: string, res: any }>(BACKEND_URL + "/signup", user)
             .subscribe(result => {
                 this.loadingStateChanged.next(false);
                 console.log(result);
@@ -74,7 +77,7 @@ export class AuthService {
     login(email, password) {
         this.loadingStateChanged.next(true);
         const user: User = { email: email, password: password };
-        this.http.post<{ message: string, token: string, expiresIn: number, fullName: string }>('http://localhost:8080/user/login', user)
+        this.http.post<{ message: string, token: string, expiresIn: number, fullName: string }>(BACKEND_URL + "/login", user)
             .subscribe(result => {
                 this.loadingStateChanged.next(false);
                 console.log(result);

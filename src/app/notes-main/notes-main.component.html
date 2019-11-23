@@ -4,6 +4,9 @@
             <button class="btn btn-success mb-2" (click)="openDialog()">
                 Add New Note
             </button>
+            <div *ngIf="isLoading" class="text-center">
+                <app-loader></app-loader>
+            </div>
             <app-notes-list></app-notes-list>
         </div>
     </div>
